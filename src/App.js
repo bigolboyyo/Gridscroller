@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useCallback } from "react";
+import Toolbar from "./Toolbar";
+import Grid from "./Grid";
+import "./App.css";
+import SearchBar from "./SearchBar";
 
-function App() {
+const App = () => {
+  const [items, setItems] = useState([]);
+  const [toolbarHeight, setToolbarHeight] = useState(0);
+
+  const memoizedSetToolbarHeight = useCallback((height) => {
+    setToolbarHeight(height);
+  }, []);
+
+  const handleAddItem = (newItem) => {
+    setItems((prevItems) => [...prevItems, newItem]);
+  };
+
+  const handleDeleteItem = (index) => {
+    setItems((prevItems) => prevItems.filter((item, i) => i !== index));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <SearchBar />
+      <Toolbar
+        handleAddItem={handleAddItem}
+        setToolbarHeight={memoizedSetToolbarHeight}
+      />
+      <div
+        className="container"
+        style={{ marginTop: `calc(${toolbarHeight}px + 7vh)` }}
+      >
+        <Grid
+          data={items}
+          handleDeleteItem={handleDeleteItem}
+          toolbarHeight={toolbarHeight}
+        />
+      </div>
+    </>
   );
-}
+};
 
 export default App;
