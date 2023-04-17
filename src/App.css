@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  letter-spacing: 0.05rem;
 }
 
 html,
@@ -7,6 +8,7 @@ body,
 #root {
   width: 100%;
   height: 100%;
+  font-family: monospace;
 }
 
 body {
@@ -137,4 +139,10 @@ body.fullscreen {
 .grid-item.full-screen .item-details,
 .grid-item.full-screen button {
   display: none;
+}
+
+.item-details {
+  text-align: center;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
 }

@@ -24,7 +24,10 @@ const Toolbar = ({ handleAddItem, setToolbarHeight }) => {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    if (file) {
+    debugger;
+    const acceptedFileTypes = ["image/jpeg", "image/png", "image/gif"];
+
+    if (file && acceptedFileTypes.includes(file.type)) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
@@ -33,6 +36,8 @@ const Toolbar = ({ handleAddItem, setToolbarHeight }) => {
           image: reader.result,
         }));
       };
+    } else {
+      alert("Please upload a valid image file (JPEG, PNG, or GIF).");
     }
   };
 
