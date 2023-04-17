@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import Toolbar from "./Toolbar";
 import Grid from "./Grid";
 import "./App.css";
-import SearchBar from "./SearchBar";
+import Header from "./Header";
 
 const App = () => {
   const [items, setItems] = useState([]);
@@ -13,7 +13,15 @@ const App = () => {
   }, []);
 
   const handleAddItem = (newItem) => {
-    setItems((prevItems) => [...prevItems, newItem]);
+    const itemExists = items.some(
+      (item) => item.image && newItem.image && item.image === newItem.image
+    );
+
+    if (itemExists) {
+      alert("Exact image file already uploaded.");
+    } else {
+      setItems((prevItems) => [...prevItems, newItem]);
+    }
   };
 
   const handleDeleteItem = (index) => {
@@ -22,7 +30,7 @@ const App = () => {
 
   return (
     <>
-      <SearchBar />
+      <Header />
       <Toolbar
         handleAddItem={handleAddItem}
         setToolbarHeight={memoizedSetToolbarHeight}
@@ -33,7 +41,7 @@ const App = () => {
       >
         <Grid
           data={items}
-          handleDeleteItem={handleDeleteItem}
+          handleDelete={handleDeleteItem}
           toolbarHeight={toolbarHeight}
         />
       </div>

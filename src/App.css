@@ -30,7 +30,7 @@ body.fullscreen {
   height: 100%;
 }
 
-.searchbar {
+.header {
   text-align: center;
   padding-bottom: 1vh;
   padding-top: 1vh;
@@ -128,4 +128,13 @@ body.fullscreen {
   align-items: center;
   height: 100%;
   padding-top: 0.35rem;
+}
+
+.grid-container.fullscreen > .grid > .grid-item:not(.full-screen) {
+  display: none;
+}
+
+.grid-item.full-screen .item-details,
+.grid-item.full-screen button {
+  display: none;
 }

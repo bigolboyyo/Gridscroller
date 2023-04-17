@@ -1,20 +1,8 @@
-import { useState, useEffect } from "react";
-
-const Grid = ({ data, toolbarHeight }) => {
-  const [items, setItems] = useState(data);
+import React, { useState } from "react";
+const Grid = ({ data, toolbarHeight, handleDelete }) => {
   const [fullScreenIndex, setFullScreenIndex] = useState(null);
 
-  useEffect(() => {
-    setItems(data);
-  }, [data]);
-
-  const handleDelete = (index) => {
-    setItems((prevItems) => {
-      const newItems = [...prevItems];
-      newItems.splice(index, 1);
-      return newItems;
-    });
-  };
+  const isFullscreen = fullScreenIndex !== null;
 
   const handleImageClick = (index) => {
     if (index === fullScreenIndex) {
@@ -27,9 +15,9 @@ const Grid = ({ data, toolbarHeight }) => {
   };
 
   return (
-    <div className="grid-container">
+    <div className={`grid-container ${isFullscreen ? "fullscreen" : ""}`}>
       <div className="grid">
-        {items.map((item, index) => (
+        {data.map((item, index) => (
           <div
             className={`grid-item ${
               fullScreenIndex === index ? "full-screen" : ""

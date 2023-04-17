@@ -38,12 +38,16 @@ const Toolbar = ({ handleAddItem, setToolbarHeight }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleAddItem(formData);
-    setFormData({
-      image: "",
-      title: "",
-      description: "",
-    });
+    if (!formData.image) {
+      alert("Please select an image.");
+    } else {
+      handleAddItem(formData);
+      setFormData({
+        image: "",
+        title: "",
+        description: "",
+      });
+    }
   };
 
   return (
