@@ -24,7 +24,6 @@ const Toolbar = ({ handleAddItem, setToolbarHeight }) => {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    debugger;
     const acceptedFileTypes = ["image/jpeg", "image/png", "image/gif"];
 
     if (file && acceptedFileTypes.includes(file.type)) {
