@@ -8,6 +8,7 @@ This is an imageboard app built with React to practice file uploading and grid l
 - Responsive grid layout
 - Fullscreen mode for individual images
 - Delete images from the grid
+- [Deployment](https://bigolboyyo.github.io/ImageBoard/)
 
 ## Technologies Used
 
